@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "shorter.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Shorter"
+    }
+  ],
+  "host": "localhost:11000",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/create": {
+      "post": {
+        "operationId": "Shorter_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/shorterCreateLinkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/shorterCreateLinkRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Shorter"
+        ]
+      }
+    },
+    "/get/{link}": {
+      "get": {
+        "operationId": "Shorter_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/shorterGetLinkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "link",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Shorter"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "shorterCreateLinkRequest": {
+      "type": "object",
+      "example": {
+        "link": "https://github.com"
+      },
+      "properties": {
+        "link": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "link"
+      ]
+    },
+    "shorterCreateLinkResponse": {
+      "type": "object",
+      "properties": {
+        "shortLink": {
+          "type": "string"
+        }
+      }
+    },
+    "shorterGetLinkResponse": {
+      "type": "object",
+      "properties": {
+        "originalLink": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
