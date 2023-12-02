@@ -4,7 +4,7 @@
 
 ### Запуск
 
-`ghcr.io/v1ack/linkshorter:master` - docker image
+`ghcr.io/marklishansky/url-short:master` - docker image
 
 Миграции накатываются при запуске
 
