@@ -1,12 +1,12 @@
-# Укорачиватель ссылок
+# url-short (test task)
 
-### grpc & http сервис преобразования ссылок
+### grpc & http service for generating short links
 
-### Запуск
+### usage
 
 `ghcr.io/marklishansky/url-short:master` - docker image
 
-Миграции накатываются при запуске
+migrations steps in with startup
 
 #### Переменные окружения
 
@@ -16,7 +16,7 @@
 |HTTP_PORT| 10010|
 |DB_CONNECTION||
 
-Если `DB_CONNECTION` не указывается то используется inMemory хранилище
+if no `DB_CONNECTION` - inMemory inMemory storage will be used
 
 #### API
 
@@ -24,21 +24,21 @@
 
 `api/shorter.proto` - proto
 
-### Разработка
+### deploy
 
-Создание миграции бд
+create db migration
 
 ```shell
 goose -dir sql/migrations create <migration_name> sql
 ```
 
-При изменении схем, как и при обновлении sql запросов необходимо запускать sqlc для генерации go из sql.
+when changing schemas as well as updating sql queries you need to run sqlc to generate go from sql.
 
 ```shell
 make generate-sqlc
 ```
 
-Для кодогенерации из proto
+for code generation from proto
 
 ```shell
 make generate-grpc-gateway
